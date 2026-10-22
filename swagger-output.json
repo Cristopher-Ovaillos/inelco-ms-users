@@ -40,7 +40,7 @@
             "description": "Datos inválidos"
           },
           "409": {
-            "description": "Email o CUIT ya registrados"
+            "description": "El email ya está registrado"
           }
         },
         "requestBody": {
@@ -57,13 +57,9 @@
                         "type": "string",
                         "example": "compras@acme.com"
                       },
-                      "nombre": {
+                      "nombre_completo": {
                         "type": "string",
-                        "example": "Laura"
-                      },
-                      "apellido": {
-                        "type": "string",
-                        "example": "Gómez"
+                        "example": "Laura Gómez"
                       },
                       "telefono": {
                         "type": "string",
@@ -78,17 +74,17 @@
                         "type": "string",
                         "example": "Acme S.A."
                       },
-                      "cuit": {
-                        "type": "string",
-                        "example": "30-12345678-9"
-                      },
-                      "direccion_fiscal": {
+                      "direccion": {
                         "type": "string",
                         "example": "Av. Siempreviva 742"
                       },
-                      "plan_servicio": {
+                      "contacto_adicional": {
                         "type": "string",
-                        "example": "Estandar"
+                        "example": "Mesa de compras"
+                      },
+                      "info_comercial": {
+                        "type": "string",
+                        "example": "Contrato de mantenimiento anual"
                       }
                     }
                   }
