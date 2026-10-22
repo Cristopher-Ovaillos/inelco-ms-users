@@ -220,4 +220,5 @@ feature/* ──PR──> desarrollo ──PR──> stage ──PR──> produ
 
 - [Software on the Road - Una arquitectura a prueba de balas para proyectos Node.js](https://softwareontheroad.com/es/ideal-nodejs-project-structure)
 - [DEV Community - Architecting Scalable and Maintainable Node.js Applications](https://dev.to/jefersoneiji/architecting-scalable-and-maintainable-nodejs-applications-best-practices-and-examples-o16)
+- https://vitaly-t.github.io/pg-promise/Database.html#tx 
 ```
