@@ -94,6 +94,177 @@
           }
         }
       }
+    },
+    "/empleados/": {
+      "post": {
+        "tags": [
+          "Empleados"
+        ],
+        "summary": "Registra un empleado con su estado de empleo y su token de invitación",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Empleado creado"
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "409": {
+            "description": "El email ya está registrado"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "usuario": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "example": "tecnico1@inelco.com"
+                      },
+                      "nombre_completo": {
+                        "type": "string",
+                        "example": "Martín Pérez"
+                      },
+                      "telefono": {
+                        "type": "string",
+                        "example": "+54 9 11 5555-0000"
+                      }
+                    }
+                  },
+                  "empleado": {
+                    "type": "object",
+                    "properties": {
+                      "estado": {
+                        "type": "string",
+                        "enum": [
+                          "activo",
+                          "licencia",
+                          "baja"
+                        ],
+                        "example": "activo"
+                      },
+                      "fecha_ingreso": {
+                        "type": "string",
+                        "example": "2026-03-01"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/empleados/{empleado_id}/permisos": {
+      "post": {
+        "tags": [
+          "Empleados"
+        ],
+        "summary": "Asigna la colección de permisos directos a un empleado (reemplaza los anteriores)",
+        "description": "",
+        "parameters": [
+          {
+            "name": "empleado_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "UUID del empleado"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Permisos asignados"
+          },
+          "400": {
+            "description": "Permiso inexistente o datos inválidos"
+          },
+          "404": {
+            "description": "Empleado no encontrado"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "permisos": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "example": [
+                      "VER_CONSULTAS",
+                      "RESPONDER_CHAT",
+                      "APROBAR_SOLUCION"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/empleados/{empleado_id}/especialidades": {
+      "post": {
+        "tags": [
+          "Empleados"
+        ],
+        "summary": "Agrega una especialidad al empleado (se usa para distribuir las consultas)",
+        "description": "",
+        "parameters": [
+          {
+            "name": "empleado_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "UUID del empleado"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Especialidad asignada"
+          },
+          "400": {
+            "description": "La especialidad no existe o datos inválidos"
+          },
+          "404": {
+            "description": "Empleado no encontrado"
+          },
+          "409": {
+            "description": "El empleado ya tiene esa especialidad"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "especialidad_id": {
+                    "type": "number",
+                    "example": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
