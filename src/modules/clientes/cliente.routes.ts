@@ -16,20 +16,19 @@ router.post('/', validateRequest(crearClienteSchema), asyncHandler(async (req, r
             properties: {
                 usuario: { type: 'object', properties: {
                     email: { type: 'string', example: 'compras@acme.com' },
-                    nombre: { type: 'string', example: 'Laura' },
-                    apellido: { type: 'string', example: 'Gómez' },
+                    nombre_completo: { type: 'string', example: 'Laura Gómez' },
                     telefono: { type: 'string', example: '+54 9 11 5555-1234' } } },
                 cliente: { type: 'object', properties: {
                     razon_social: { type: 'string', example: 'Acme S.A.' },
-                    cuit: { type: 'string', example: '30-12345678-9' },
-                    direccion_fiscal: { type: 'string', example: 'Av. Siempreviva 742' },
-                    plan_servicio: { type: 'string', example: 'Estandar' } } }
+                    direccion: { type: 'string', example: 'Av. Siempreviva 742' },
+                    contacto_adicional: { type: 'string', example: 'Mesa de compras' },
+                    info_comercial: { type: 'string', example: 'Contrato de mantenimiento anual' } } }
             }
         } } }
     } */
     // #swagger.responses[201] = { description: 'Cliente creado' }
     // #swagger.responses[400] = { description: 'Datos inválidos' }
-    // #swagger.responses[409] = { description: 'Email o CUIT ya registrados' }
+    // #swagger.responses[409] = { description: 'El email ya está registrado' }
     return crear(req, res);
 }));
 

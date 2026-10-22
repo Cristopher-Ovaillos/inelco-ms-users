@@ -21,9 +21,9 @@ export const crearCliente = async (dto: CrearClienteDto) => {
         const { usuario, cliente } = await repository.crearClienteConInvitacion(dto, token, expiracion);
         return toClienteDto(usuario, cliente, token, expiracion); //armamos la respeusta final
     } catch (error) {
-        // 23505 = violacion de UNIQUE en postgres (email o cuit repetido)
+        // 23505 = violacion de UNIQUE en postgres (email repetido)
         if ((error as { code?: string }).code === '23505') {
-            throw new AppError('Ya existe un usuario con ese email o un cliente con ese CUIT', 409, true);
+            throw new AppError('Ya existe un usuario con ese email', 409, true);
         }
         throw error;
     }

@@ -5,17 +5,17 @@ import { type CrearClienteDto } from './cliente.schema.ts';
 export interface UsuarioRow {
     id: string;
     email: string;
-    nombre: string;
-    apellido: string;
+    nombre_completo: string;
     telefono: string | null;
     activo: boolean;
 }
 
 export interface ClienteRow {
+    id: string;
     razon_social: string;
-    cuit: string;
-    direccion_fiscal: string | null;
-    plan_servicio: string;
+    direccion: string | null;
+    contacto_adicional: string | null;
+    info_comercial: string | null;
 }
 
 // en este endpoint se involucra tres insercciones
@@ -32,18 +32,18 @@ export const crearClienteConInvitacion = (dto: CrearClienteDto, token: string, e
     db.tx(async (t) => {
         //.one esperamos una sola fila
         const usuario = await t.one<UsuarioRow>(
-            `INSERT INTO usuarios (email, nombre, apellido, telefono, tipo_usuario)
-             VALUES ($1, $2, $3, $4, 'cliente')
-             RETURNING id, email, nombre, apellido, telefono, activo`,
-            [dto.usuario.email, dto.usuario.nombre, dto.usuario.apellido, dto.usuario.telefono ?? null]
+            `INSERT INTO usuarios (email, nombre_completo, telefono)
+             VALUES ($1, $2, $3)
+             RETURNING id, email, nombre_completo, telefono, activo`,
+            [dto.usuario.email, dto.usuario.nombre_completo, dto.usuario.telefono ?? null]
         );
 
         const cliente = await t.one<ClienteRow>(
-            `INSERT INTO clientes (usuario_id, razon_social, cuit, direccion_fiscal, plan_servicio)
-             VALUES ($1, $2, $3, $4, COALESCE($5, 'Estandar'))
-             RETURNING razon_social, cuit, direccion_fiscal, plan_servicio`,
-            [usuario.id, dto.cliente.razon_social, dto.cliente.cuit,
-            dto.cliente.direccion_fiscal ?? null, dto.cliente.plan_servicio ?? null]
+            `INSERT INTO clientes (usuario_id, razon_social, direccion, contacto_adicional, info_comercial)
+             VALUES ($1, $2, $3, $4, $5)
+             RETURNING id, razon_social, direccion, contacto_adicional, info_comercial`,
+            [usuario.id, dto.cliente.razon_social, dto.cliente.direccion ?? null,
+            dto.cliente.contacto_adicional ?? null, dto.cliente.info_comercial ?? null]
         );
 
         await t.none(

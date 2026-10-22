@@ -10,15 +10,14 @@ export const crearClienteSchema = z.object({
     body: z.object({
         usuario: z.object({
             email: z.email('Email inválido'),
-            nombre: z.string().min(1, 'El nombre es obligatorio').max(100),
-            apellido: z.string().min(1, 'El apellido es obligatorio').max(100),
+            nombre_completo: z.string().min(1, 'El nombre es obligatorio').max(150),
             telefono: z.string().max(50).optional(),
         }),
         cliente: z.object({
             razon_social: z.string().min(1, 'La razón social es obligatoria').max(150),
-            cuit: z.string().min(11, 'CUIT inválido').max(20),
-            direccion_fiscal: z.string().optional(),
-            plan_servicio: z.string().max(50).optional(),
+            direccion: z.string().max(255).optional(),
+            contacto_adicional: z.string().max(150).optional(),
+            info_comercial: z.string().optional(),
         }),
     }),
 });
