@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api"
+      "url": "http://localhost:3003/api"
     }
   ],
   "paths": {
@@ -262,6 +262,34 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/permisos/": {
+      "get": {
+        "tags": [
+          "Catálogos"
+        ],
+        "summary": "Lista las especialidades de los técnicos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Lista de especialidades"
+          }
+        }
+      }
+    },
+    "/especialidades/": {
+      "get": {
+        "tags": [
+          "Catálogos"
+        ],
+        "summary": "Lista las especialidades de los técnicos",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Lista de especialidades"
           }
         }
       }
