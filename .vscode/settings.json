@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "database": "inelco_users_db",
+            "username": "postgres",
+            "name": "coneccion a la bd del MS users",
+            "group": "inelco",
+            "password": ""
+        }
+    ]
+}

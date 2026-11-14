@@ -2,6 +2,7 @@ import {Router} from 'express';
 import pingRoutes from './modules/ping/ping.routes.ts';
 import clienteRoutes from './modules/clientes/cliente.routes.ts';
 import empleadoRoutes from './modules/empleados/empleado.routes.ts';
+import { permisoRoutes, especialidadRoutes } from './modules/catalogos/catalogo.routes.ts';
 
 const router = Router();
 
@@ -9,5 +10,7 @@ const router = Router();
 router.use('/ping', pingRoutes);
 router.use('/clientes', clienteRoutes);
 router.use('/empleados', empleadoRoutes); // queda en /api/empleados porque API_PREFIX es /api
+router.use('/permisos', permisoRoutes);
+router.use('/especialidades', especialidadRoutes);
 
 export default router;
